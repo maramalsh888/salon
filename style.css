@@ -3,7 +3,6 @@
 ===================================================== */
 
 :root {
-
     --ivory: #f8f3ee;
     --cream: #eee5dd;
     --soft: #e4d5cc;
@@ -26,7 +25,6 @@
 
     --ease: cubic-bezier(.2,.7,.2,1);
 }
-
 
 
 /* =====================================================
@@ -89,7 +87,6 @@ button {
 }
 
 
-
 /* =====================================================
    CONTAINER
 ===================================================== */
@@ -102,7 +99,6 @@ button {
 
     margin-inline: auto;
 }
-
 
 
 /* =====================================================
@@ -171,7 +167,6 @@ button {
 }
 
 
-
 /* =====================================================
    SCROLL PROGRESS
 ===================================================== */
@@ -189,7 +184,6 @@ button {
 
     background: var(--rose-dark);
 }
-
 
 
 /* =====================================================
@@ -376,7 +370,6 @@ button {
 }
 
 
-
 /* =====================================================
    MOBILE NAV
 ===================================================== */
@@ -447,7 +440,6 @@ button {
 
     letter-spacing: .14em;
 }
-
 
 
 /* =====================================================
@@ -591,7 +583,6 @@ button {
 .text-link:hover span {
     transform: translate(3px,-3px);
 }
-
 
 
 /* =====================================================
@@ -805,7 +796,6 @@ button {
 }
 
 
-
 /* =====================================================
    INTRO
 ===================================================== */
@@ -866,7 +856,6 @@ button {
 
     margin-top: 30px;
 }
-
 
 
 /* =====================================================
@@ -1097,7 +1086,6 @@ button {
 }
 
 
-
 /* =====================================================
    ABOUT
 ===================================================== */
@@ -1229,7 +1217,6 @@ button {
 }
 
 
-
 /* =====================================================
    GALLERY
 ===================================================== */
@@ -1289,6 +1276,11 @@ button {
     color: var(--white);
 }
 
+
+/* =====================================================
+   GALLERY GRID
+===================================================== */
+
 .gallery-grid {
 
     display: grid;
@@ -1321,19 +1313,65 @@ button {
 }
 
 .gallery-item.hidden {
-
     display: none;
 }
 
-.gallery-item.gallery-large {
+
+/* =====================================================
+   MAKEUP
+   KEEP ORIGINAL EDITORIAL SIZES
+===================================================== */
+
+.gallery-item[data-category="makeup"].gallery-large {
 
     grid-column: span 2;
 }
 
-.gallery-item.gallery-tall {
+.gallery-item[data-category="makeup"].gallery-tall {
 
     grid-row: span 2;
 }
+
+
+/* =====================================================
+   HAIR
+   ALL SAME SIZE
+===================================================== */
+
+.gallery-item[data-category="hair"] {
+
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+
+/* =====================================================
+   NAILS
+   ALL SAME SIZE
+===================================================== */
+
+.gallery-item[data-category="nails"] {
+
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+
+/* =====================================================
+   BEAUTY
+   ALL SAME SIZE
+===================================================== */
+
+.gallery-item[data-category="beauty"] {
+
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+
+/* =====================================================
+   GALLERY IMAGES
+===================================================== */
 
 .gallery-item img {
 
@@ -1350,6 +1388,11 @@ button {
 
     transform: scale(1.06);
 }
+
+
+/* =====================================================
+   GALLERY OVERLAY
+===================================================== */
 
 .gallery-overlay {
 
@@ -1411,6 +1454,11 @@ button {
     font-weight: 400;
 }
 
+
+/* =====================================================
+   GALLERY NOTE
+===================================================== */
+
 .gallery-note {
 
     display: flex;
@@ -1439,7 +1487,6 @@ button {
 
     font-size: 8px;
 }
-
 
 
 /* =====================================================
@@ -1515,7 +1562,6 @@ button {
 
     font-size: 9px;
 }
-
 
 
 /* =====================================================
@@ -1694,7 +1740,6 @@ button {
 }
 
 
-
 /* =====================================================
    FOOTER
 ===================================================== */
@@ -1798,7 +1843,6 @@ button {
 
     letter-spacing: .1em;
 }
-
 
 
 /* =====================================================
@@ -1905,7 +1949,6 @@ button {
 }
 
 
-
 /* =====================================================
    REVEAL
 ===================================================== */
@@ -1929,7 +1972,6 @@ button {
 }
 
 
-
 /* =====================================================
    IMAGE FALLBACK
 ===================================================== */
@@ -1938,7 +1980,6 @@ img.image-error {
 
     object-fit: cover;
 }
-
 
 
 /* =====================================================
@@ -2015,12 +2056,36 @@ img.image-error {
         height: 38px;
     }
 
+    /*
+       GALLERY TABLET
+       Hair / Nails / Beauty remain even.
+       Makeup keeps its editorial sizes.
+    */
+
+    .gallery-grid {
+        grid-auto-rows: 220px;
+    }
+
+    .gallery-item[data-category="hair"],
+    .gallery-item[data-category="nails"],
+    .gallery-item[data-category="beauty"] {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .gallery-item[data-category="makeup"].gallery-large {
+        grid-column: span 2;
+    }
+
+    .gallery-item[data-category="makeup"].gallery-tall {
+        grid-row: span 2;
+    }
+
     .booking-wrapper {
         gap: 60px;
     }
 
 }
-
 
 
 /* =====================================================
@@ -2114,6 +2179,39 @@ img.image-error {
         min-height: 600px;
     }
 
+    /*
+       GALLERY TABLET / SMALL
+    */
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 210px;
+        gap: 10px;
+    }
+
+    /*
+       Makeup stays editorial.
+    */
+
+    .gallery-item[data-category="makeup"].gallery-large {
+        grid-column: span 2;
+    }
+
+    .gallery-item[data-category="makeup"].gallery-tall {
+        grid-row: span 2;
+    }
+
+    /*
+       Hair / Nails / Beauty stay regular.
+    */
+
+    .gallery-item[data-category="hair"],
+    .gallery-item[data-category="nails"],
+    .gallery-item[data-category="beauty"] {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
     .booking-wrapper {
 
         grid-template-columns: 1fr;
@@ -2131,7 +2229,6 @@ img.image-error {
     }
 
 }
-
 
 
 /* =====================================================
@@ -2230,7 +2327,6 @@ img.image-error {
     }
 
     .section-heading h2 {
-
         font-size: 49px;
     }
 
@@ -2238,7 +2334,10 @@ img.image-error {
         font-size: 50px;
     }
 
-    /* SERVICES */
+
+    /* =================================================
+       SERVICES
+    ================================================= */
 
     .services .section-heading {
         margin-bottom: 40px;
@@ -2325,7 +2424,10 @@ img.image-error {
         height: 38px;
     }
 
-    /* ABOUT */
+
+    /* =================================================
+       ABOUT
+    ================================================= */
 
     .about-images {
         min-height: 450px;
@@ -2348,7 +2450,10 @@ img.image-error {
         font-size: 49px;
     }
 
-    /* GALLERY */
+
+    /* =================================================
+       GALLERY
+    ================================================= */
 
     .gallery-heading {
         margin-bottom: 35px;
@@ -2373,17 +2478,36 @@ img.image-error {
         grid-template-columns:
             repeat(2, 1fr);
 
-        grid-auto-rows: 200px;
+        grid-auto-rows: 190px;
 
         gap: 8px;
     }
 
-    .gallery-item.gallery-large {
+    /*
+       IMPORTANT:
+       Hair, Nails and Beauty are all regular
+       equal-sized images on mobile.
+    */
+
+    .gallery-item[data-category="hair"],
+    .gallery-item[data-category="nails"],
+    .gallery-item[data-category="beauty"] {
+
+        grid-column: span 1;
+
+        grid-row: span 1;
+    }
+
+    /*
+       Makeup keeps its larger editorial design.
+    */
+
+    .gallery-item[data-category="makeup"].gallery-large {
 
         grid-column: span 2;
     }
 
-    .gallery-item.gallery-tall {
+    .gallery-item[data-category="makeup"].gallery-tall {
 
         grid-row: span 2;
     }
@@ -2406,7 +2530,10 @@ img.image-error {
         text-align: center;
     }
 
-    /* REVIEWS */
+
+    /* =================================================
+       REVIEWS
+    ================================================= */
 
     .reviews-grid {
 
@@ -2423,7 +2550,10 @@ img.image-error {
         grid-column: auto;
     }
 
-    /* BOOKING */
+
+    /* =================================================
+       BOOKING
+    ================================================= */
 
     .booking-intro h2 {
         font-size: 52px;
@@ -2435,7 +2565,10 @@ img.image-error {
         gap: 0;
     }
 
-    /* FOOTER */
+
+    /* =================================================
+       FOOTER
+    ================================================= */
 
     .footer-top {
 
@@ -2467,24 +2600,29 @@ img.image-error {
         gap: 8px;
     }
 
-    /* LIGHTBOX */
+
+    /* =================================================
+       LIGHTBOX
+    ================================================= */
 
     .lightbox {
         padding: 30px 15px;
     }
 
     .lightbox-image {
+
         max-width: 95vw;
+
         max-height: 75vh;
     }
 
     .lightbox-caption {
+
         left: 20px;
         bottom: 20px;
     }
 
 }
-
 
 
 /* =====================================================
